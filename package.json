@@ -1,0 +1,15 @@
+{
+	"name": "mindtek-purchaseorder-worklist",
+	"version": "1.0.0",
+	"description": "Fiori elements Worklist for approving purchase orders",
+	"private": true,
+	"scripts": {
+		"start": "ui5 serve --port 8084 --open index.html",
+		"generate-mockdata": "node scripts/generate-mockdata.js",
+		"test": "node scripts/test-odata-engine.js"
+	},
+	"devDependencies": {
+		"@ui5/cli": "^3.9.0",
+		"ui5-middleware-livereload": "^3.4.0"
+	}
+}

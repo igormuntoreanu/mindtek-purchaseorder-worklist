@@ -1,0 +1,212 @@
+{
+	"_version": "1.76.0",
+	"sap.app": {
+		"id": "mindtek.purchaseorder.worklist",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": ["", "en", "en_GB"],
+			"fallbackLocale": ""
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata4/sap/po_approval/srvd/sap/poapproval/0001/",
+				"type": "OData",
+				"settings": {
+					"annotations": ["annotation"],
+					"odataVersion": "4.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"annotation": {
+				"type": "ODataAnnotation",
+				"uri": "annotations/annotation.xml",
+				"settings": {
+					"localUri": "annotations/annotation.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://approvals"
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"fullWidth": true
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.136.0",
+			"libs": {
+				"sap.fe.templates": {},
+				"sap.fe.core": {},
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.f": {},
+				"sap.ui.layout": {},
+				"sap.ui.mdc": {},
+				"sap.ushell": {},
+				"sap.ui.fl": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "mindtek.purchaseorder.worklist.i18n.i18n",
+					"supportedLocales": ["", "en", "en_GB"],
+					"fallbackLocale": ""
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "mindtek.purchaseorder.worklist.i18n.i18n",
+					"supportedLocales": ["", "en", "en_GB"],
+					"fallbackLocale": ""
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true,
+					"groupId": "$auto"
+				}
+			}
+		},
+		"routing": {
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "PurchaseOrderList",
+					"target": "PurchaseOrderList"
+				},
+				{
+					"pattern": "PurchaseOrder({key}):?query:",
+					"name": "PurchaseOrderObjectPage",
+					"target": "PurchaseOrderObjectPage"
+				}
+			],
+			"targets": {
+				"PurchaseOrderList": {
+					"type": "Component",
+					"id": "PurchaseOrderList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/PurchaseOrder",
+							"variantManagement": "None",
+							"initialLoad": "Enabled",
+							"hideFilterBar": true,
+							"views": {
+								"paths": [
+									{
+										"key": "Pending",
+										"annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Pending"
+									},
+									{
+										"key": "Approved",
+										"annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Approved"
+									},
+									{
+										"key": "Rejected",
+										"annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Rejected"
+									},
+									{
+										"key": "All",
+										"annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#All"
+									}
+								],
+								"showCounts": true
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable",
+										"selectionMode": "Multi",
+										"selectAll": true,
+										"enableExport": false,
+										"personalization": {
+											"sort": true,
+											"column": true,
+											"filter": false,
+											"group": false
+										}
+									}
+								}
+							},
+							"navigation": {
+								"PurchaseOrder": {
+									"detail": {
+										"route": "PurchaseOrderObjectPage"
+									}
+								}
+							}
+						}
+					}
+				},
+				"PurchaseOrderObjectPage": {
+					"type": "Component",
+					"id": "PurchaseOrderObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"contextPath": "/PurchaseOrder",
+							"controlConfiguration": {
+								"Items/@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable",
+										"selectionMode": "None",
+										"enableExport": false
+									}
+								},
+								"ApprovalHistory/@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "ResponsiveTable",
+										"selectionMode": "None",
+										"enableExport": false
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ListReport.ListReportController": {
+						"controllerName": "mindtek.purchaseorder.worklist.ext.controller.ListReportExt"
+					},
+					"sap.fe.templates.ObjectPage.ObjectPageController": {
+						"controllerName": "mindtek.purchaseorder.worklist.ext.controller.ObjectPageExt"
+					}
+				}
+			}
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "transactional"
+	}
+}

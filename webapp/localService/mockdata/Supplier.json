@@ -1,0 +1,98 @@
+[
+	{
+		"SupplierID": "SUP001",
+		"Name": "Northbridge Office Supplies",
+		"Contact": "Jane Holt",
+		"Email": "jane.holt@northbridge-supplies.example",
+		"City": "Leeds",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP002",
+		"Name": "Calder & Wren Packaging",
+		"Contact": "Owen Price",
+		"Email": "owen.price@calderwren.example",
+		"City": "Bristol",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP003",
+		"Name": "Harrowfield Industrial",
+		"Contact": "Amira Khan",
+		"Email": "amira.khan@harrowfield.example",
+		"City": "Birmingham",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP004",
+		"Name": "Pembroke Print Studio",
+		"Contact": "Evan Rees",
+		"Email": "evan.rees@pembroke-print.example",
+		"City": "Cardiff",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP005",
+		"Name": "Ashcombe Facilities",
+		"Contact": "Helen Ward",
+		"Email": "helen.ward@ashcombe-facilities.example",
+		"City": "Reading",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP006",
+		"Name": "Rivermead Catering",
+		"Contact": "Sam Iqbal",
+		"Email": "sam.iqbal@rivermead-catering.example",
+		"City": "Oxford",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP007",
+		"Name": "Thornbury Safety Gear",
+		"Contact": "Luke Byrne",
+		"Email": "luke.byrne@thornbury-safety.example",
+		"City": "Sheffield",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP008",
+		"Name": "Loxley Laboratory",
+		"Contact": "Nina Patel",
+		"Email": "nina.patel@loxley-lab.example",
+		"City": "Cambridge",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP009",
+		"Name": "Greystone Maintenance",
+		"Contact": "Paul Adey",
+		"Email": "paul.adey@greystone-maintenance.example",
+		"City": "Nottingham",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP010",
+		"Name": "Whitlow Electrical",
+		"Contact": "Rachel Moss",
+		"Email": "rachel.moss@whitlow-electrical.example",
+		"City": "Newcastle",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP011",
+		"Name": "Marlowe Stationery",
+		"Contact": "Chris Nolan",
+		"Email": "chris.nolan@marlowe-stationery.example",
+		"City": "Norwich",
+		"Country": "United Kingdom"
+	},
+	{
+		"SupplierID": "SUP012",
+		"Name": "Fenwick Logistics",
+		"Contact": "Grace Cole",
+		"Email": "grace.cole@fenwick-logistics.example",
+		"City": "Southampton",
+		"Country": "United Kingdom"
+	}
+]

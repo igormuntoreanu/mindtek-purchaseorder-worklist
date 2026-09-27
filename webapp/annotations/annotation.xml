@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+	<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+		<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+		<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Namespace="Org.OData.Core.V1" Alias="Core"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="../localService/metadata.xml">
+		<edmx:Include Namespace="mindtek.poapproval" Alias="PO"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema Namespace="mindtek.poapproval.annotations" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+			<Annotations Target="PO.Container/PurchaseOrder">
+				<Annotation Term="Capabilities.SearchRestrictions">
+					<Record>
+						<PropertyValue Property="Searchable" Bool="true"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.Container/PurchaseOrderItem">
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.Container/ApprovalStep">
+				<Annotation Term="Capabilities.InsertRestrictions">
+					<Record>
+						<PropertyValue Property="Insertable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.UpdateRestrictions">
+					<Record>
+						<PropertyValue Property="Updatable" Bool="false"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.DeleteRestrictions">
+					<Record>
+						<PropertyValue Property="Deletable" Bool="false"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.Container/RejectionReason">
+				<Annotation Term="Capabilities.SearchRestrictions">
+					<Record>
+						<PropertyValue Property="Searchable" Bool="true"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.PurchaseOrder/PurchaseOrder">
+				<Annotation Term="Common.Label" String="{@i18n>poNumber}"/>
+				<Annotation Term="Common.Text" Path="SupplierName">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/SupplierName">
+				<Annotation Term="Common.Label" String="{@i18n>supplier}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/RequestedBy">
+				<Annotation Term="Common.Label" String="{@i18n>requestedBy}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/RequestDate">
+				<Annotation Term="Common.Label" String="{@i18n>requestDate}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/CostCentre">
+				<Annotation Term="Common.Label" String="{@i18n>costCentre}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/NetValue">
+				<Annotation Term="Common.Label" String="{@i18n>netValue}"/>
+				<Annotation Term="Measures.ISOCurrency" Path="Currency"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/DeliveryDate">
+				<Annotation Term="Common.Label" String="{@i18n>deliveryDate}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/Priority">
+				<Annotation Term="Common.Label" String="{@i18n>priority}"/>
+				<Annotation Term="UI.Criticality" Path="PriorityCriticality"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/DueBy">
+				<Annotation Term="Common.Label" String="{@i18n>dueBy}"/>
+				<Annotation Term="UI.Criticality" Path="DueCriticality"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/Status">
+				<Annotation Term="Common.Label" String="{@i18n>status}"/>
+				<Annotation Term="UI.Criticality" Path="StatusCriticality"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/PurchasingOrganisation">
+				<Annotation Term="Common.Label" String="{@i18n>purchasingOrganisation}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/PurchasingGroup">
+				<Annotation Term="Common.Label" String="{@i18n>purchasingGroup}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/CompanyCode">
+				<Annotation Term="Common.Label" String="{@i18n>companyCode}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/PaymentTerms">
+				<Annotation Term="Common.Label" String="{@i18n>paymentTerms}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/Incoterms">
+				<Annotation Term="Common.Label" String="{@i18n>incoterms}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/DeliveryAddress">
+				<Annotation Term="Common.Label" String="{@i18n>deliveryAddress}"/>
+				<Annotation Term="UI.MultiLineText" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/Notes">
+				<Annotation Term="Common.Label" String="{@i18n>notes}"/>
+				<Annotation Term="UI.MultiLineText" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/HeaderTitle">
+				<Annotation Term="Common.Label" String="{@i18n>poNumber}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/IsPending">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/PriorityCriticality">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/DueCriticality">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/StatusCriticality">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/Currency">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrder/SupplierID">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+
+			<Annotations Target="PO.PurchaseOrderItem/ItemNumber">
+				<Annotation Term="Common.Label" String="{@i18n>itemNumber}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/Material">
+				<Annotation Term="Common.Label" String="{@i18n>material}"/>
+				<Annotation Term="Common.Text" Path="Description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextLast"/>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/Description">
+				<Annotation Term="Common.Label" String="{@i18n>description}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/Quantity">
+				<Annotation Term="Common.Label" String="{@i18n>quantity}"/>
+				<Annotation Term="Measures.Unit" Path="QuantityUnit"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/NetPrice">
+				<Annotation Term="Common.Label" String="{@i18n>netPrice}"/>
+				<Annotation Term="Measures.ISOCurrency" Path="Currency"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/NetValue">
+				<Annotation Term="Common.Label" String="{@i18n>netValue}"/>
+				<Annotation Term="Measures.ISOCurrency" Path="Currency"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/DeliveryDate">
+				<Annotation Term="Common.Label" String="{@i18n>deliveryDate}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/Plant">
+				<Annotation Term="Common.Label" String="{@i18n>plant}"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/QuantityUnit">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+			<Annotations Target="PO.PurchaseOrderItem/Currency">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+
+			<Annotations Target="PO.Supplier/Name">
+				<Annotation Term="Common.Label" String="{@i18n>supplier}"/>
+			</Annotations>
+			<Annotations Target="PO.Supplier/SupplierID">
+				<Annotation Term="Common.Label" String="{@i18n>supplierId}"/>
+			</Annotations>
+			<Annotations Target="PO.Supplier/Contact">
+				<Annotation Term="Common.Label" String="{@i18n>contact}"/>
+			</Annotations>
+			<Annotations Target="PO.Supplier/Email">
+				<Annotation Term="Common.Label" String="{@i18n>email}"/>
+			</Annotations>
+			<Annotations Target="PO.Supplier/City">
+				<Annotation Term="Common.Label" String="{@i18n>city}"/>
+			</Annotations>
+			<Annotations Target="PO.Supplier/Country">
+				<Annotation Term="Common.Label" String="{@i18n>country}"/>
+			</Annotations>
+
+			<Annotations Target="PO.ApprovalStep/Step">
+				<Annotation Term="Common.Label" String="{@i18n>step}"/>
+			</Annotations>
+			<Annotations Target="PO.ApprovalStep/Approver">
+				<Annotation Term="Common.Label" String="{@i18n>approver}"/>
+			</Annotations>
+			<Annotations Target="PO.ApprovalStep/Action">
+				<Annotation Term="Common.Label" String="{@i18n>action}"/>
+				<Annotation Term="UI.Criticality" Path="ActionCriticality"/>
+			</Annotations>
+			<Annotations Target="PO.ApprovalStep/ChangedAt">
+				<Annotation Term="Common.Label" String="{@i18n>changedAt}"/>
+			</Annotations>
+			<Annotations Target="PO.ApprovalStep/Comment">
+				<Annotation Term="Common.Label" String="{@i18n>comment}"/>
+			</Annotations>
+			<Annotations Target="PO.ApprovalStep/ActionCriticality">
+				<Annotation Term="UI.Hidden" Bool="true"/>
+			</Annotations>
+
+			<Annotations Target="PO.RejectionReason/ReasonCode">
+				<Annotation Term="Common.Text" Path="Description">
+					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.RejectionReason/Description">
+				<Annotation Term="Common.Label" String="{@i18n>reasonForRejection}"/>
+			</Annotations>
+
+			<Annotations Target="PO.Approve(PO.PurchaseOrder)">
+				<Annotation Term="Core.OperationAvailable" Path="IsPending"/>
+				<Annotation Term="Common.SideEffects">
+					<Record Type="Common.SideEffectsType">
+						<PropertyValue Property="TargetProperties">
+							<Collection>
+								<PropertyPath>Status</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
+								<PropertyPath>IsPending</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="TargetEntities">
+							<Collection>
+								<NavigationPropertyPath>ApprovalHistory</NavigationPropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.Approve(PO.PurchaseOrder)/Comment">
+				<Annotation Term="Common.Label" String="{@i18n>comment}"/>
+			</Annotations>
+
+			<Annotations Target="PO.Reject(PO.PurchaseOrder)">
+				<Annotation Term="Core.OperationAvailable" Path="IsPending"/>
+				<Annotation Term="Common.SideEffects">
+					<Record Type="Common.SideEffectsType">
+						<PropertyValue Property="TargetProperties">
+							<Collection>
+								<PropertyPath>Status</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
+								<PropertyPath>IsPending</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="TargetEntities">
+							<Collection>
+								<NavigationPropertyPath>ApprovalHistory</NavigationPropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.Reject(PO.PurchaseOrder)/ReasonCode">
+				<Annotation Term="Common.Label" String="{@i18n>reasonForRejection}"/>
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="{@i18n>reasonForRejection}"/>
+						<PropertyValue Property="CollectionPath" String="RejectionReason"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ReasonCode"/>
+									<PropertyValue Property="ValueListProperty" String="ReasonCode"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="PO.Reject(PO.PurchaseOrder)/Comment">
+				<Annotation Term="Common.Label" String="{@i18n>comment}"/>
+			</Annotations>
+
+			<Annotations Target="PO.PurchaseOrder">
+				<Annotation Term="UI.HeaderInfo">
+					<Record Type="UI.HeaderInfoType">
+						<PropertyValue Property="TypeName" String="{@i18n>typeName}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n>typeNamePlural}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="HeaderTitle"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="SupplierName"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchaseOrder"/>
+							<PropertyValue Property="Label" String="{@i18n>poNumber}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="RequestedBy"/>
+							<PropertyValue Property="Label" String="{@i18n>requestedBy}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CostCentre"/>
+							<PropertyValue Property="Label" String="{@i18n>costCentre}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="NetValue"/>
+							<PropertyValue Property="Label" String="{@i18n>netValue}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DeliveryDate"/>
+							<PropertyValue Property="Label" String="{@i18n>deliveryDate}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Priority"/>
+							<PropertyValue Property="Label" String="{@i18n>priority}"/>
+							<PropertyValue Property="Criticality" Path="PriorityCriticality"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DueBy"/>
+							<PropertyValue Property="Label" String="{@i18n>dueBy}"/>
+							<PropertyValue Property="Criticality" Path="DueCriticality"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Status"/>
+							<PropertyValue Property="Label" String="{@i18n>status}"/>
+							<PropertyValue Property="Criticality" Path="StatusCriticality"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="{@i18n>approve}"/>
+							<PropertyValue Property="Action" String="PO.Approve"/>
+							<PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+							<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="{@i18n>reject}"/>
+							<PropertyValue Property="Action" String="PO.Reject"/>
+							<PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/ChangeSet"/>
+							<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
+						</Record>
+					</Collection>
+				</Annotation>
+
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="{@i18n>approve}"/>
+							<PropertyValue Property="Action" String="PO.Approve"/>
+							<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Label" String="{@i18n>reject}"/>
+							<PropertyValue Property="Action" String="PO.Reject"/>
+							<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
+						</Record>
+					</Collection>
+				</Annotation>
+
+				<Annotation Term="UI.DataPoint" Qualifier="NetValue">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n>netValue}"/>
+						<PropertyValue Property="Value" Path="NetValue"/>
+						<PropertyValue Property="ValueFormat">
+							<Record Type="UI.NumberFormat">
+								<PropertyValue Property="NumberOfFractionalDigits" Int="2"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="Status">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n>status}"/>
+						<PropertyValue Property="Value" Path="Status"/>
+						<PropertyValue Property="Criticality" Path="StatusCriticality"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="DueBy">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n>dueBy}"/>
+						<PropertyValue Property="Value" Path="DueBy"/>
+						<PropertyValue Property="Criticality" Path="DueCriticality"/>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.DataPoint" Qualifier="Priority">
+					<Record Type="UI.DataPointType">
+						<PropertyValue Property="Title" String="{@i18n>priority}"/>
+						<PropertyValue Property="Value" Path="Priority"/>
+						<PropertyValue Property="Criticality" Path="PriorityCriticality"/>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.FieldGroup" Qualifier="Request">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Label" String="{@i18n>request}"/>
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="RequestedBy"/>
+									<PropertyValue Property="Label" String="{@i18n>requestedBy}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="RequestDate"/>
+									<PropertyValue Property="Label" String="{@i18n>requestDate}"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.HeaderFacets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="NetValue"/>
+							<PropertyValue Property="Label" String="{@i18n>netValue}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#NetValue"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Status"/>
+							<PropertyValue Property="Label" String="{@i18n>status}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#Status"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Request"/>
+							<PropertyValue Property="Label" String="{@i18n>requestedBy}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Request"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="DueBy"/>
+							<PropertyValue Property="Label" String="{@i18n>dueBy}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#DueBy"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Priority"/>
+							<PropertyValue Property="Label" String="{@i18n>priority}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#Priority"/>
+						</Record>
+					</Collection>
+				</Annotation>
+
+				<Annotation Term="UI.FieldGroup" Qualifier="General">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="PurchasingOrganisation"/>
+									<PropertyValue Property="Label" String="{@i18n>purchasingOrganisation}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="PurchasingGroup"/>
+									<PropertyValue Property="Label" String="{@i18n>purchasingGroup}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="CompanyCode"/>
+									<PropertyValue Property="Label" String="{@i18n>companyCode}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="CostCentre"/>
+									<PropertyValue Property="Label" String="{@i18n>costCentre}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="PaymentTerms"/>
+									<PropertyValue Property="Label" String="{@i18n>paymentTerms}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Incoterms"/>
+									<PropertyValue Property="Label" String="{@i18n>incoterms}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="DeliveryAddress"/>
+									<PropertyValue Property="Label" String="{@i18n>deliveryAddress}"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.FieldGroup" Qualifier="Supplier">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/Name"/>
+									<PropertyValue Property="Label" String="{@i18n>supplier}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/SupplierID"/>
+									<PropertyValue Property="Label" String="{@i18n>supplierId}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/Contact"/>
+									<PropertyValue Property="Label" String="{@i18n>contact}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/Email"/>
+									<PropertyValue Property="Label" String="{@i18n>email}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/City"/>
+									<PropertyValue Property="Label" String="{@i18n>city}"/>
+								</Record>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Supplier/Country"/>
+									<PropertyValue Property="Label" String="{@i18n>country}"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.FieldGroup" Qualifier="Notes">
+					<Record Type="UI.FieldGroupType">
+						<PropertyValue Property="Data">
+							<Collection>
+								<Record Type="UI.DataField">
+									<PropertyValue Property="Value" Path="Notes"/>
+									<PropertyValue Property="Label" String="{@i18n>notes}"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.Facets">
+					<Collection>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="General"/>
+							<PropertyValue Property="Label" String="{@i18n>generalInformation}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#General"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Items"/>
+							<PropertyValue Property="Label" String="{@i18n>items}"/>
+							<PropertyValue Property="Target" AnnotationPath="Items/@UI.LineItem"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Supplier"/>
+							<PropertyValue Property="Label" String="{@i18n>supplier}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Supplier"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="ApprovalHistory"/>
+							<PropertyValue Property="Label" String="{@i18n>approvalHistory}"/>
+							<PropertyValue Property="Target" AnnotationPath="ApprovalHistory/@UI.LineItem"/>
+						</Record>
+						<Record Type="UI.ReferenceFacet">
+							<PropertyValue Property="ID" String="Notes"/>
+							<PropertyValue Property="Label" String="{@i18n>notes}"/>
+							<PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Notes"/>
+						</Record>
+					</Collection>
+				</Annotation>
+
+				<Annotation Term="UI.SelectionPresentationVariant" Qualifier="Pending">
+					<Record Type="UI.SelectionPresentationVariantType">
+						<PropertyValue Property="Text" String="{@i18n>pending}"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="Status"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="Pending"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="PresentationVariant">
+							<Record Type="UI.PresentationVariantType">
+								<PropertyValue Property="Visualizations">
+									<Collection>
+										<AnnotationPath>@UI.LineItem</AnnotationPath>
+									</Collection>
+								</PropertyValue>
+								<PropertyValue Property="SortOrder">
+									<Collection>
+										<Record Type="Common.SortOrderType">
+											<PropertyValue Property="Property" PropertyPath="DueBy"/>
+											<PropertyValue Property="Descending" Bool="false"/>
+										</Record>
+										<Record Type="Common.SortOrderType">
+											<PropertyValue Property="Property" PropertyPath="PurchaseOrder"/>
+											<PropertyValue Property="Descending" Bool="false"/>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.SelectionPresentationVariant" Qualifier="Approved">
+					<Record Type="UI.SelectionPresentationVariantType">
+						<PropertyValue Property="Text" String="{@i18n>approved}"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="Status"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="Approved"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="PresentationVariant">
+							<Record Type="UI.PresentationVariantType">
+								<PropertyValue Property="Visualizations">
+									<Collection>
+										<AnnotationPath>@UI.LineItem</AnnotationPath>
+									</Collection>
+								</PropertyValue>
+								<PropertyValue Property="SortOrder">
+									<Collection>
+										<Record Type="Common.SortOrderType">
+											<PropertyValue Property="Property" PropertyPath="DueBy"/>
+											<PropertyValue Property="Descending" Bool="false"/>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.SelectionPresentationVariant" Qualifier="Rejected">
+					<Record Type="UI.SelectionPresentationVariantType">
+						<PropertyValue Property="Text" String="{@i18n>rejected}"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="Status"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="Rejected"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="PresentationVariant">
+							<Record Type="UI.PresentationVariantType">
+								<PropertyValue Property="Visualizations">
+									<Collection>
+										<AnnotationPath>@UI.LineItem</AnnotationPath>
+									</Collection>
+								</PropertyValue>
+								<PropertyValue Property="SortOrder">
+									<Collection>
+										<Record Type="Common.SortOrderType">
+											<PropertyValue Property="Property" PropertyPath="DueBy"/>
+											<PropertyValue Property="Descending" Bool="false"/>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+
+				<Annotation Term="UI.SelectionPresentationVariant" Qualifier="All">
+					<Record Type="UI.SelectionPresentationVariantType">
+						<PropertyValue Property="Text" String="{@i18n>all}"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection/>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="PresentationVariant">
+							<Record Type="UI.PresentationVariantType">
+								<PropertyValue Property="Visualizations">
+									<Collection>
+										<AnnotationPath>@UI.LineItem</AnnotationPath>
+									</Collection>
+								</PropertyValue>
+								<PropertyValue Property="SortOrder">
+									<Collection>
+										<Record Type="Common.SortOrderType">
+											<PropertyValue Property="Property" PropertyPath="DueBy"/>
+											<PropertyValue Property="Descending" Bool="false"/>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.PurchaseOrderItem">
+				<Annotation Term="UI.HeaderInfo">
+					<Record Type="UI.HeaderInfoType">
+						<PropertyValue Property="TypeName" String="{@i18n>itemNumber}"/>
+						<PropertyValue Property="TypeNamePlural" String="{@i18n>items}"/>
+						<PropertyValue Property="Title">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="ItemNumber"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Description">
+							<Record Type="UI.DataField">
+								<PropertyValue Property="Value" Path="Description"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ItemNumber"/>
+							<PropertyValue Property="Label" String="{@i18n>itemNumber}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Material"/>
+							<PropertyValue Property="Label" String="{@i18n>material}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Quantity"/>
+							<PropertyValue Property="Label" String="{@i18n>quantity}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="NetPrice"/>
+							<PropertyValue Property="Label" String="{@i18n>netPrice}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="NetValue"/>
+							<PropertyValue Property="Label" String="{@i18n>netValue}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DeliveryDate"/>
+							<PropertyValue Property="Label" String="{@i18n>deliveryDate}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Plant"/>
+							<PropertyValue Property="Label" String="{@i18n>plant}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.ApprovalStep">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Step"/>
+							<PropertyValue Property="Label" String="{@i18n>step}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Approver"/>
+							<PropertyValue Property="Label" String="{@i18n>approver}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Action"/>
+							<PropertyValue Property="Label" String="{@i18n>action}"/>
+							<PropertyValue Property="Criticality" Path="ActionCriticality"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ChangedAt"/>
+							<PropertyValue Property="Label" String="{@i18n>changedAt}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Comment"/>
+							<PropertyValue Property="Label" String="{@i18n>comment}"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+
+			<Annotations Target="PO.RejectionReason">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Description"/>
+							<PropertyValue Property="Label" String="{@i18n>reasonForRejection}"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

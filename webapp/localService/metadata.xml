@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+	<edmx:DataServices>
+		<Schema Namespace="mindtek.poapproval" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<EntityType Name="PurchaseOrder">
+				<Key>
+					<PropertyRef Name="PurchaseOrder"/>
+				</Key>
+				<Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="HeaderTitle" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="SupplierID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="SupplierName" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="RequestedBy" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="RequestDate" Type="Edm.Date" Nullable="false"/>
+				<Property Name="CostCentre" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="NetValue" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="2"/>
+				<Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="3"/>
+				<Property Name="DeliveryDate" Type="Edm.Date" Nullable="false"/>
+				<Property Name="Priority" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="PriorityCriticality" Type="Edm.Int16" Nullable="false"/>
+				<Property Name="DueBy" Type="Edm.Date" Nullable="false"/>
+				<Property Name="DueCriticality" Type="Edm.Int16" Nullable="false"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="StatusCriticality" Type="Edm.Int16" Nullable="false"/>
+				<Property Name="IsPending" Type="Edm.Boolean" Nullable="false"/>
+				<Property Name="PurchasingOrganisation" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="PurchasingGroup" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="CompanyCode" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="PaymentTerms" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="Incoterms" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="DeliveryAddress" Type="Edm.String" Nullable="false" MaxLength="200"/>
+				<Property Name="Notes" Type="Edm.String" Nullable="false" MaxLength="1000"/>
+				<NavigationProperty Name="Items" Type="Collection(mindtek.poapproval.PurchaseOrderItem)" Partner="PurchaseOrderRef"/>
+				<NavigationProperty Name="Supplier" Type="mindtek.poapproval.Supplier">
+					<ReferentialConstraint Property="SupplierID" ReferencedProperty="SupplierID"/>
+				</NavigationProperty>
+				<NavigationProperty Name="ApprovalHistory" Type="Collection(mindtek.poapproval.ApprovalStep)" Partner="PurchaseOrderRef"/>
+			</EntityType>
+			<EntityType Name="PurchaseOrderItem">
+				<Key>
+					<PropertyRef Name="PurchaseOrder"/>
+					<PropertyRef Name="ItemNumber"/>
+				</Key>
+				<Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="ItemNumber" Type="Edm.String" Nullable="false" MaxLength="6"/>
+				<Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40"/>
+				<Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="120"/>
+				<Property Name="Quantity" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="variable"/>
+				<Property Name="QuantityUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+				<Property Name="NetPrice" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="2"/>
+				<Property Name="NetValue" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="2"/>
+				<Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="3"/>
+				<Property Name="DeliveryDate" Type="Edm.Date" Nullable="false"/>
+				<Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="40"/>
+				<NavigationProperty Name="PurchaseOrderRef" Type="mindtek.poapproval.PurchaseOrder" Nullable="false" Partner="Items">
+					<ReferentialConstraint Property="PurchaseOrder" ReferencedProperty="PurchaseOrder"/>
+				</NavigationProperty>
+			</EntityType>
+			<EntityType Name="Supplier">
+				<Key>
+					<PropertyRef Name="SupplierID"/>
+				</Key>
+				<Property Name="SupplierID" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="Contact" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="Email" Type="Edm.String" Nullable="false" MaxLength="120"/>
+				<Property Name="City" Type="Edm.String" Nullable="false" MaxLength="40"/>
+				<Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="40"/>
+			</EntityType>
+			<EntityType Name="ApprovalStep">
+				<Key>
+					<PropertyRef Name="ID"/>
+				</Key>
+				<Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="PurchaseOrder" Type="Edm.String" Nullable="false" MaxLength="10"/>
+				<Property Name="Step" Type="Edm.Int32" Nullable="false"/>
+				<Property Name="Approver" Type="Edm.String" Nullable="false" MaxLength="80"/>
+				<Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="ActionCriticality" Type="Edm.Int16" Nullable="false"/>
+				<Property Name="ChangedAt" Type="Edm.DateTimeOffset" Nullable="false"/>
+				<Property Name="Comment" Type="Edm.String" Nullable="false" MaxLength="500"/>
+				<NavigationProperty Name="PurchaseOrderRef" Type="mindtek.poapproval.PurchaseOrder" Nullable="false" Partner="ApprovalHistory">
+					<ReferentialConstraint Property="PurchaseOrder" ReferencedProperty="PurchaseOrder"/>
+				</NavigationProperty>
+			</EntityType>
+			<EntityType Name="RejectionReason">
+				<Key>
+					<PropertyRef Name="ReasonCode"/>
+				</Key>
+				<Property Name="ReasonCode" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="80"/>
+			</EntityType>
+			<Action Name="Approve" IsBound="true" EntitySetPath="PurchaseOrder">
+				<Parameter Name="PurchaseOrder" Type="mindtek.poapproval.PurchaseOrder" Nullable="false"/>
+				<Parameter Name="Comment" Type="Edm.String" MaxLength="500"/>
+				<ReturnType Type="mindtek.poapproval.PurchaseOrder" Nullable="false"/>
+			</Action>
+			<Action Name="Reject" IsBound="true" EntitySetPath="PurchaseOrder">
+				<Parameter Name="PurchaseOrder" Type="mindtek.poapproval.PurchaseOrder" Nullable="false"/>
+				<Parameter Name="ReasonCode" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Parameter Name="Comment" Type="Edm.String" MaxLength="500"/>
+				<ReturnType Type="mindtek.poapproval.PurchaseOrder" Nullable="false"/>
+			</Action>
+			<EntityContainer Name="Container">
+				<EntitySet Name="PurchaseOrder" EntityType="mindtek.poapproval.PurchaseOrder">
+					<NavigationPropertyBinding Path="Items" Target="PurchaseOrderItem"/>
+					<NavigationPropertyBinding Path="Supplier" Target="Supplier"/>
+					<NavigationPropertyBinding Path="ApprovalHistory" Target="ApprovalStep"/>
+				</EntitySet>
+				<EntitySet Name="PurchaseOrderItem" EntityType="mindtek.poapproval.PurchaseOrderItem">
+					<NavigationPropertyBinding Path="PurchaseOrderRef" Target="PurchaseOrder"/>
+				</EntitySet>
+				<EntitySet Name="Supplier" EntityType="mindtek.poapproval.Supplier"/>
+				<EntitySet Name="ApprovalStep" EntityType="mindtek.poapproval.ApprovalStep">
+					<NavigationPropertyBinding Path="PurchaseOrderRef" Target="PurchaseOrder"/>
+				</EntitySet>
+				<EntitySet Name="RejectionReason" EntityType="mindtek.poapproval.RejectionReason"/>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

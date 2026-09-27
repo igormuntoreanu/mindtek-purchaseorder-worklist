@@ -1,0 +1,22 @@
+[
+	{
+		"ReasonCode": "BUDGET",
+		"Description": "Budget exceeded"
+	},
+	{
+		"ReasonCode": "COSTCENTRE",
+		"Description": "Wrong cost centre"
+	},
+	{
+		"ReasonCode": "PRICE",
+		"Description": "Price not agreed"
+	},
+	{
+		"ReasonCode": "DUPLICATE",
+		"Description": "Duplicate request"
+	},
+	{
+		"ReasonCode": "OTHER",
+		"Description": "Other"
+	}
+]
